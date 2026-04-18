@@ -62,7 +62,7 @@ export default function WalletsPage() {
 
   return (
     <div className="flex flex-col bg-background relative min-h-screen p-8 pb-32 max-w-7xl mx-auto w-full gap-12">
-      {/* Unified Header */}
+      
       <header className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 w-full">
         <div className="flex flex-col gap-2 transition-all">
           <h2 className="text-[10px] font-label uppercase tracking-[0.4em] text-on-surface-variant font-bold">Asset Surveillance</h2>
@@ -72,10 +72,10 @@ export default function WalletsPage() {
         </div>
       </header>
 
-      {/* Filters Area */}
+      
       <section className="w-full">
         <div className="flex flex-wrap gap-6 items-center">
-          {/* Search */}
+          
           <div className="relative group flex-1 min-w-[300px]">
             <span className="material-symbols-outlined absolute left-0 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary-container transition-colors">search</span>
             <input 
@@ -98,7 +98,7 @@ export default function WalletsPage() {
         </div>
       </section>
 
-      {/* Data Canvas */}
+      
       <section className="w-full">
         <div className="bg-surface-container-low rounded-lg shadow-[0_0_40px_rgba(0,0,0,0.3)] overflow-hidden relative ghost-border border-outline-variant/5">
           <div className="grid grid-cols-12 gap-4 px-8 py-5 bg-surface-container text-[10px] font-label text-on-surface-variant uppercase tracking-widest border-b border-outline-variant/10 font-bold">

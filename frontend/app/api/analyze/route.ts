@@ -6,7 +6,6 @@ export async function POST(req: Request) {
   try {
     const { transactionInput, heuristics, decision } = await req.json();
 
-    // Check for API Key
     const apiKey = process.env.GEMINI_API;
     if (!apiKey) {
       return NextResponse.json(

@@ -34,9 +34,6 @@ export default function DashboardLayout({
   const navLinks = [
     { name: "Dashboard", href: "/dashboard", icon: "grid_view" },
     { name: "Screening", href: "/dashboard/screening", icon: "policy" },
-    // Hidden for MVP: keep the routes/code available, but do not show empty sections in navigation yet.
-    // { name: "Wallets", href: "/dashboard/wallets", icon: "account_balance_wallet" },
-    // { name: "Reports", href: "/dashboard/reports", icon: "analytics" },
   ];
 
   if (!isAuthorized) {
@@ -49,15 +46,15 @@ export default function DashboardLayout({
 
   return (
     <div className="bg-background text-on-surface font-body antialiased h-screen overflow-hidden flex selection:bg-primary-container selection:text-on-primary">
-      {/* SideNavBar Component */}
+      
       <nav className="h-screen w-64 bg-linear-to-r from-[#111222] to-[#1a1b2e] shadow-[10px_0_30px_rgba(0,0,0,0.5)] fixed left-0 top-0 flex flex-col z-50">
-        {/* Header */}
+        
         <div className="px-6 py-8 flex flex-col items-start justify-center">
           <h1 className="text-xl font-black text-primary-container font-headline tracking-[0.1em]">GATERA</h1>
           <span className="text-[0.65rem] font-label text-on-surface-variant tracking-[0.2em] mt-1 uppercase">Risk Engine</span>
         </div>
 
-        {/* Navigation Links */}
+        
         <div className="flex-1 overflow-y-auto py-4 space-y-1">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
@@ -83,7 +80,7 @@ export default function DashboardLayout({
           })}
         </div>
 
-        {/* CTA */}
+        
         <div className="p-6 mt-auto">
           <Link 
             href="/dashboard/screening"
@@ -102,13 +99,13 @@ export default function DashboardLayout({
         </div>
       </nav>
 
-      {/* Main Content Area */}
+      
       <main className="ml-64 flex-1 h-full overflow-hidden flex flex-col relative bg-surface">
-        {/* TopNavBar Component */}
+        
         <header className="z-40 bg-[#111222]/80 backdrop-blur-lg border-none shadow-[0_4px_30px_rgba(0,242,255,0.03)] flex justify-between items-center w-full px-8 py-4 sticky top-0">
           <div className="flex-1"></div>
 
-          {/* User Identity & Logout */}
+          
           <div className="flex items-center gap-10">
             <div className="flex items-center gap-4">
               <span className="text-[9px] font-headline uppercase tracking-[0.3em] text-on-surface-variant font-bold opacity-50">System Access</span>
@@ -123,7 +120,7 @@ export default function DashboardLayout({
           </div>
         </header>
 
-        {/* Content Portal */}
+        
         <div className="flex-1 overflow-y-auto w-full">
             {children}
         </div>

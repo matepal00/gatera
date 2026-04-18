@@ -93,7 +93,6 @@ export default function ScreeningPage() {
     drawPageBackground(doc);
     currentY = 30;
 
-    // --- HEADER ---
     doc.setFont("helvetica", "bold");
     doc.setFontSize(24);
     doc.setTextColor(0, 242, 255);
@@ -104,7 +103,6 @@ export default function ScreeningPage() {
     doc.text("INTELLIGENCE ASSET // CLASS: CRYPTO-CRIME // MiCA_v1.0", margin, currentY + 6);
     currentY += 28;
 
-    // --- META BOX ---
     doc.setFillColor(20, 25, 55); 
     doc.rect(margin, currentY, contentWidth, 34, 'F');
     doc.setDrawColor(0, 80, 85);
@@ -143,7 +141,6 @@ export default function ScreeningPage() {
 
     currentY += 55;
 
-    // --- BODY PARSER ---
     const rawLines = aiAnalysis.split("\n");
     
     rawLines.forEach((line) => {
@@ -155,12 +152,10 @@ export default function ScreeningPage() {
 
       const cleanLine = cleanMarkdown(line);
 
-      // --- SECTION HEADERS (check cleaned text, not raw markdown) ---
       if (cleanLine.match(/^\d+\./) || line.match(/^#{1,3}\s/)) {
         checkPageBreak(20);
         currentY += 5;
         
-        // Header Background Bar
         doc.setFillColor(25, 32, 60);
         doc.rect(margin - 2, currentY - 6, contentWidth + 4, 10, 'F');
         
@@ -169,7 +164,6 @@ export default function ScreeningPage() {
         doc.setTextColor(0, 242, 255);
         doc.text(cleanLine.toUpperCase(), margin + 2, currentY);
         
-        // Underline accent
         doc.setDrawColor(0, 120, 130);
         doc.setLineWidth(0.4);
         doc.line(margin, currentY + 3, margin + 50, currentY + 3);
@@ -178,7 +172,6 @@ export default function ScreeningPage() {
         return;
       }
 
-      // --- LIST ITEMS ---
       if (line.startsWith("*") || line.startsWith("-") || line.startsWith("•")) {
         checkPageBreak(12);
         doc.setFont("helvetica", "normal");
@@ -190,7 +183,6 @@ export default function ScreeningPage() {
         return;
       }
 
-      // --- PARAGRAPHS ---
       checkPageBreak(12);
       doc.setFont("helvetica", "normal");
       doc.setFontSize(11.5);
@@ -200,7 +192,6 @@ export default function ScreeningPage() {
       currentY += (wrapped.length * 5.5) + 2;
     });
 
-    // --- FOOTER ---
     const pageCount = (doc as any).internal.getNumberOfPages();
     for (let i = 1; i <= pageCount; i++) {
       doc.setPage(i);
@@ -323,7 +314,7 @@ export default function ScreeningPage() {
 
   return (
     <div className="p-8 pb-32 max-w-7xl mx-auto w-full flex flex-col gap-12 min-h-screen">
-      {/* Header */}
+      
       <header className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 w-full">
         <div className="flex flex-col gap-2">
           <h2 className="text-[10px] font-label uppercase tracking-[0.4em] text-on-surface-variant font-bold">Initialize Verification</h2>
@@ -334,10 +325,10 @@ export default function ScreeningPage() {
       </header>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-        {/* Left Column - Form */}
+        
         <div className="lg:col-span-7 flex flex-col gap-8 text-on-surface">
 
-          {/* Transaction Details */}
+          
           <section className="bg-surface-container-low rounded-lg p-8 flex flex-col gap-8 ghost-border relative">
             <header className="flex items-center gap-3">
               <span className="material-symbols-outlined text-primary-container text-lg font-bold">receipt_long</span>
@@ -345,7 +336,7 @@ export default function ScreeningPage() {
             </header>
 
             <div className="flex flex-col gap-8">
-              {/* Wallet Address */}
+              
               <div className="input-underglow border-b border-outline-variant/30 p-3 pb-2 flex flex-col gap-2 group bg-surface-container-low/30 rounded-t-sm">
                 <label htmlFor="wallet-address" className="text-[10px] font-label text-primary-container uppercase tracking-[0.2em] font-bold px-1">Target Wallet Address</label>
                 <div className="flex items-center gap-4 px-1">
@@ -376,7 +367,7 @@ export default function ScreeningPage() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Amount */}
+                
                 <div className="input-underglow border-b border-outline-variant/30 p-3 pb-1 flex flex-col gap-2 group">
                   <label htmlFor="amount-eur" className="text-[10px] font-label text-on-surface-variant uppercase tracking-widest px-1">Amount (EUR)</label>
                   <div className="flex items-center gap-3 px-1">
@@ -392,7 +383,7 @@ export default function ScreeningPage() {
                   </div>
                 </div>
 
-                {/* Chain */}
+                
                 <div className="input-underglow border-b border-outline-variant/30 pb-3 flex flex-col gap-2 cursor-not-allowed group">
                   <label htmlFor="chain-select" className="text-[10px] font-label text-on-surface-variant uppercase tracking-widest px-1">Blockchain Network</label>
                   <div id="chain-select" className="flex justify-between items-center py-0.5 px-1">
@@ -404,7 +395,7 @@ export default function ScreeningPage() {
                   </div>
                 </div>
 
-                {/* Direction */}
+                
                 <div className="flex flex-col gap-3">
                   <label className="text-[10px] font-label text-on-surface-variant uppercase tracking-widest px-1">Flow Direction</label>
                   <div className="flex bg-surface-container-lowest rounded p-1 ghost-border w-full">
@@ -425,7 +416,7 @@ export default function ScreeningPage() {
                   </div>
                 </div>
 
-                {/* Screening Depth */}
+                
                 <div className="relative" ref={sliderRef}>
                   <button
                     type="button"
@@ -476,7 +467,7 @@ export default function ScreeningPage() {
             </div>
           </section>
 
-          {/* Compliance Toggles */}
+          
           <section className="bg-surface-container-low rounded-lg p-8 flex flex-col gap-8 ghost-border relative overflow-hidden">
             <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-primary-container shadow-[0_0_15px_#00F2FF]"></div>
             <header className="flex items-center gap-3">
@@ -514,7 +505,7 @@ export default function ScreeningPage() {
             </div>
           </section>
 
-          {/* CTA */}
+          
           <button
             type="button"
             onClick={executeRiskAssessment}
@@ -528,14 +519,14 @@ export default function ScreeningPage() {
           </button>
         </div>
 
-        {/* Right Column - AI Report or Radar */}
+        
         <div className="lg:col-span-5 h-full min-h-[600px] relative">
           {aiAnalysis ? (
             <div
               className="rounded-xl border border-primary-container/20 shadow-[0_30px_90px_rgba(0,0,0,0.8)] overflow-y-auto h-full max-h-[85vh] relative z-[60]"
               style={{ backgroundColor: "#111222" }}
             >
-              {/* Report Header */}
+              
               <div className="p-8 pb-0">
                 <header className="flex items-center gap-5 mb-6 pb-6 border-b border-outline-variant/20">
                   <div className="w-14 h-14 rounded-xl bg-primary-container/10 flex items-center justify-center border border-primary-container/30 shadow-[0_0_20px_rgba(0,242,255,0.08)]">
@@ -545,7 +536,7 @@ export default function ScreeningPage() {
                     <div className="flex justify-between items-start w-full">
                       <h2 className="text-[10px] font-label text-primary-container uppercase tracking-[0.5em] font-black leading-none">Intelligence Report</h2>
                       
-                      {/* Dynamic Decision Badge */}
+                      
 
                     </div>
                     <h3 className="text-2xl font-headline font-bold text-on-surface uppercase tracking-tight">Forensic Analysis</h3>
@@ -566,7 +557,7 @@ export default function ScreeningPage() {
                           {lastResult.decision.replace(/([A-Z])/g, ' $1').trim()}
                         </div>
                       )}
-              {/* Report Body */}
+              
               <div className="px-8 pb-8">
                 <ReactMarkdown
                   components={{
@@ -620,7 +611,7 @@ export default function ScreeningPage() {
                 </ReactMarkdown>
               </div>
 
-              {/* Report Footer & Actions */}
+              
                 <div className="mx-8 py-6 border-t border-outline-variant/15 flex flex-col md:flex-row justify-between items-center gap-6 mb-4">
                   <div className="flex flex-col gap-1.5 opacity-40">
                     <div className="flex items-center gap-3 text-[9px] font-label text-on-surface-variant uppercase tracking-[0.25em] font-black">

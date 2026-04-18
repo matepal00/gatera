@@ -6,7 +6,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <div className="bg-background min-h-screen text-on-surface selection:bg-primary-container selection:text-on-primary">
-      {/* TopNavBar */}
+      
       <header className="fixed top-0 w-full z-50 bg-[#111222]/60 backdrop-blur-xl glow-shadow border-b border-outline-variant/5">
         <div className="flex justify-between items-center max-w-7xl mx-auto px-8 py-6">
           <div className="text-2xl font-bold tracking-[0.2em] text-primary-container font-headline uppercase">Gatera</div>
@@ -22,9 +22,9 @@ export default function Home() {
       </header>
 
       <main className="pt-22">
-        {/* Hero Section */}
+        
         <section className="w-full relative overflow-hidden">
-          {/* Background Video - Full Width */}
+          
           <div className="absolute inset-0 z-0 opacity-40 pointer-events-none">
             <video className="absolute inset-0 w-full h-full object-cover" autoPlay loop muted playsInline>
               <source src="/0418.mov" />
@@ -57,12 +57,12 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Bento Grid: Core Capabilities */}
+        
         <section className="max-w-7xl mx-auto px-8 mb-32">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Large Feature */}
+            
             <div className="md:col-span-2 bg-surface-container-low p-10 flex flex-col justify-between relative overflow-hidden group">
-              {/* Decorative Element - SVG for guaranteed visibility */}
+              
               <div className="absolute -bottom-32 -right-16 opacity-5 pointer-events-none text-white">
                 <svg width="400" height="400" viewBox="0 0 24 24" fill="currentColor">
                   <title>Decorative Shield</title>
@@ -78,7 +78,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Small Feature 1 */}
+            
             <div className="bg-surface-container-highest p-10 flex flex-col justify-between border-l-2 border-primary-container">
               <div>
                 <span className="material-symbols-outlined text-primary-container mb-6">speed</span>
@@ -96,7 +96,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Small Feature 2 */}
+            
             <div className="bg-surface-container p-10 flex flex-col justify-between">
               <div>
                 <span className="material-symbols-outlined text-primary-container mb-6">verified_user</span>
@@ -110,7 +110,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Medium Feature */}
+            
             <div className="md:col-span-2 bg-surface-container-low p-10 flex items-center justify-between gap-12 group">
               <div className="flex-1">
                 <h3 className="font-headline text-3xl font-bold text-white mb-4 uppercase">Event Report Workflow</h3>
@@ -131,7 +131,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Use Cases: Industry Vertical Section */}
+        
         <section className="bg-surface-container-low py-32 relative">
           <div className="max-w-7xl mx-auto px-8">
             <div className="mb-20 text-center">
@@ -139,7 +139,7 @@ export default function Home() {
               <p className="text-on-surface-variant max-w-xl mx-auto font-body">Evaluate the wallet on the other side of a company treasury transfer before accepting funds or sending a payout.</p>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {/* Inbound Use Case */}
+              
               <div className="glass-card p-1 text-left relative group">
                 <div className="bg-surface-container p-8 h-full">
                   <div className="h-1 bg-primary-container w-12 mb-8 group-hover:w-full transition-all duration-700"></div>
@@ -157,7 +157,7 @@ export default function Home() {
                   </ul>
                 </div>
               </div>
-              {/* Outbound Use Case */}
+              
               <div className="glass-card p-1 text-left relative group translate-y-4">
                 <div className="bg-surface-container p-8 h-full border-t border-primary-container/20">
                   <div className="h-1 bg-primary-container w-12 mb-8 group-hover:w-full transition-all duration-700"></div>
@@ -175,7 +175,7 @@ export default function Home() {
                   </ul>
                 </div>
               </div>
-              {/* CASP Use Case */}
+              
               <div className="glass-card p-1 text-left relative group">
                 <div className="bg-surface-container p-8 h-full">
                   <div className="h-1 bg-primary-container w-12 mb-8 group-hover:w-full transition-all duration-700"></div>
@@ -197,7 +197,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Dynamic Visualization (Simulated Dashboard) */}
+        
         <section className="max-w-7xl mx-auto px-8 py-32">
           <div className="bg-surface-container-lowest p-12 lg:p-20 relative overflow-hidden">
             <div className="absolute inset-0 opacity-20 pointer-events-none">
@@ -239,7 +239,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Bottom CTA */}
+        
         <section className="max-w-7xl mx-auto px-8 py-32 text-center">
           <h2 className="font-headline text-5xl md:text-7xl font-bold text-white mb-10 tracking-tight uppercase">Screen the Wallet <span className="italic font-extralight text-primary-container">Before Funds Move.</span></h2>
           <div className="flex flex-col md:flex-row items-center justify-center gap-6">
@@ -249,7 +249,7 @@ export default function Home() {
         </section>
       </main>
 
-      {/* Footer */}
+      
       <footer className="w-full py-12 bg-[#111222] border-t border-[#3A494B]/15">
         <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="text-xl font-bold tracking-[0.2em] text-primary-container font-headline uppercase">Gatera</div>

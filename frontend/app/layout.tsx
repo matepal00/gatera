@@ -20,6 +20,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Gatera - Secure Web3 Compliance",
   description: "Secure Your Web3 Future with Precision AML",
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export default function RootLayout({

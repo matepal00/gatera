@@ -33,7 +33,7 @@ export default function ReportsPage() {
 
   return (
     <div className="flex flex-col bg-background relative p-6 md:p-8 xl:p-8 gap-12 max-w-7xl mx-auto w-full min-h-screen">
-      {/* Header Section */}
+      
       <header className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 w-full">
         <div className="flex flex-col gap-2 transition-all">
           <h2 className="text-[10px] font-label uppercase tracking-[0.4em] text-on-surface-variant font-bold">Intelligence Repository</h2>
@@ -43,9 +43,9 @@ export default function ReportsPage() {
         </div>
       </header>
 
-      {/* Stats/Bento Grid */}
+      
       <section className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
-        {/* Stat Card 1 */}
+        
         <div className="bg-surface-container-low rounded-lg p-8 flex flex-col justify-between min-h-[160px] ghost-border glow-shadow relative overflow-hidden group">
           <div className="absolute -right-4 -top-4 w-24 h-24 bg-primary-container/5 rounded-full blur-2xl group-hover:bg-primary-container/10 transition-all duration-700"></div>
           <div className="flex justify-between items-start z-10">
@@ -55,7 +55,7 @@ export default function ReportsPage() {
           <div className="text-4xl font-headline font-light text-on-surface z-10 mt-4 tracking-tighter">142</div>
         </div>
 
-        {/* Stat Card 2 */}
+        
         <div className="bg-surface-container-low rounded-lg p-8 flex flex-col justify-between min-h-[160px] ghost-border relative overflow-hidden group">
           <div className="flex justify-between items-start z-10">
             <span className="text-[10px] font-label uppercase text-on-surface-variant tracking-[0.2em] font-bold">Scheduled Runs</span>
@@ -64,7 +64,7 @@ export default function ReportsPage() {
           <div className="text-4xl font-headline font-light text-on-surface z-10 mt-4 tracking-tighter">08</div>
         </div>
 
-        {/* Action Card */}
+        
         <div className="bg-surface-container-low rounded-lg p-8 flex flex-col justify-center items-center min-h-[160px] ghost-border hover:bg-surface-container-highest transition-all cursor-pointer group hover:scale-[1.02] active:scale-[0.98]">
           <div className="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center mb-4 group-hover:bg-primary-container/10 transition-all shadow-inner">
             <span className="material-symbols-outlined text-primary-container text-2xl group-hover:scale-110 transition-all">cloud_download</span>
@@ -73,7 +73,7 @@ export default function ReportsPage() {
         </div>
       </section>
 
-      {/* Controls Bar */}
+      
       <section className="w-full flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 pb-4">
         <div className="flex gap-4 items-center">
           <div className="flex bg-surface-container-lowest rounded p-1 ghost-border p-1.5 shadow-[inset_0_0_20px_rgba(0,0,0,0.4)]">
@@ -97,9 +97,9 @@ export default function ReportsPage() {
         </div>
       </section>
 
-      {/* Reports List Area */}
+      
       <section className="w-full flex flex-col gap-6">
-        {/* List Header */}
+        
         <div className="hidden md:grid grid-cols-12 gap-6 px-10 py-2 text-[10px] font-label text-on-surface-variant uppercase tracking-[0.3em] font-bold border-b border-outline-variant/10 pb-6">
           <div className="col-span-5">Report Authentication / Details</div>
           <div className="col-span-3">Entity / Target</div>
@@ -107,7 +107,7 @@ export default function ReportsPage() {
           <div className="col-span-2 text-right">Repository Actions</div>
         </div>
 
-        {/* Report Items */}
+        
         <div className="flex flex-col gap-4">
           {reports.map((report) => (
             <div 
@@ -155,7 +155,7 @@ export default function ReportsPage() {
           ))}
         </div>
 
-        {/* Pagination/Load More */}
+        
         <div className="w-full flex justify-center mt-12">
           <button type="button" className="text-[10px] font-headline uppercase tracking-[0.3em] text-on-surface-variant hover:text-primary-container transition-all flex items-center gap-3 font-black group bg-surface-container-low/50 px-8 py-4 rounded-full border border-outline-variant/10 hover:border-primary-container/30">
             <span className="material-symbols-outlined text-lg group-hover:translate-y-1 transition-transform">expand_more</span>
