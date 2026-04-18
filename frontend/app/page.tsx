@@ -2,10 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 
 export default function Home() {
-  const router = useRouter();
   return (
     <div className="bg-background min-h-screen text-on-surface selection:bg-primary-container selection:text-on-primary">
       {/* TopNavBar */}
@@ -38,22 +36,22 @@ export default function Home() {
           
           <div className="max-w-7xl mx-auto px-8 py-20 lg:py-32 relative z-10">
             <div className="max-w-4xl">
-              <span className="font-label text-xs uppercase tracking-[0.3em] text-primary-container mb-6 block">The Hyper-Luminous Vault</span>
+              <span className="font-label text-xs uppercase tracking-[0.3em] text-primary-container mb-6 block">Multi-Chain Wallet Transfer Screening</span>
               <h1 className="font-headline text-6xl md:text-8xl font-bold tracking-tight text-white mb-8 leading-[0.9] uppercase">
-                Secure the <span className="text-transparent bg-clip-text bg-linear-to-r from-primary-container to-primary-fixed-dim">Frontier.</span>
+                Assess Wallet Risk <span className="text-transparent bg-clip-text bg-linear-to-r from-primary-container to-primary-fixed-dim">Before Funds Move.</span>
               </h1>
               <p className="font-body text-xl text-on-surface-variant max-w-2xl leading-relaxed">
-                Gatera provides institutional-grade screening and automated compliance for the next generation of digital wealth. Engineered for absolute precision.
+                Gatera screens the wallet on the other side of a treasury transfer using Travel Rule triggers, AML/CFT heuristics, on-chain history, token pricing, and AI-generated event reports.
               </p>
               <div className="mt-12 flex flex-col sm:flex-row gap-6">
                  <Link href="/login" className="bg-primary-container text-on-primary px-8 py-4 font-headline font-bold text-base hover:brightness-110 active:scale-95 transition-all glow-shadow flex items-center gap-3">
-                   Start Screening
+                   Run Screening
                    <span className="material-symbols-outlined text-xl">arrow_forward</span>
                  </Link>
-                 <button onClick={() => router.push("/api")} type="button" className="bg-surface-container/40 backdrop-blur-xl border cursor-pointer border-outline-variant/15 text-primary-container px-8 py-4 font-headline font-bold text-base hover:bg-surface-container/60 transition-all flex items-center gap-3">
-                   <span className="material-symbols-outlined cursor-pointer  text-xl">terminal</span>
+                 <Link href="/api" className="bg-surface-container/40 backdrop-blur-xl border cursor-pointer border-outline-variant/15 text-primary-container px-8 py-4 font-headline font-bold text-base hover:bg-surface-container/60 transition-all flex items-center gap-3">
+                   <span className="material-symbols-outlined cursor-pointer text-xl">terminal</span>
                    View API Docs
-                 </button>
+                 </Link>
               </div>
             </div>
           </div>
@@ -75,12 +73,8 @@ export default function Home() {
                 <div className="w-12 h-12 flex items-center justify-center bg-surface-container mb-8">
                   <span className="material-symbols-outlined text-primary-container text-2xl">shield</span>
                 </div>
-                <h3 className="font-headline text-3xl font-bold text-white mb-4 tracking-wide uppercase">Institutional Screening</h3>
-                <p className="text-on-surface-variant max-w-md font-body">Deep-dive due diligence and entity resolution for complex institutional wallets. Cross-reference billions of data points in milliseconds.</p>
-              </div>
-              <div className="mt-12 flex items-center gap-4 group-hover:translate-x-2 transition-transform duration-500 relative z-10">
-                <span className="headline-editorial text-xs tracking-widest uppercase text-primary-container">Explore Engine</span>
-                <span className="material-symbols-outlined text-primary-container text-sm">arrow_forward</span>
+                <h3 className="font-headline text-3xl font-bold text-white mb-4 tracking-wide uppercase">Treasury Transfer Decisions</h3>
+                <p className="text-on-surface-variant max-w-md font-body">Submit a counterparty wallet, transfer direction, EUR amount, Travel Rule status, and verification state. Receive Allow, AllowWithMonitoring, VerifyOwnership, ManualReview, or Hold.</p>
               </div>
             </div>
 
@@ -88,16 +82,16 @@ export default function Home() {
             <div className="bg-surface-container-highest p-10 flex flex-col justify-between border-l-2 border-primary-container">
               <div>
                 <span className="material-symbols-outlined text-primary-container mb-6">speed</span>
-                <h3 className="font-headline text-2xl font-bold text-white mb-4 uppercase">Real-Time AML</h3>
-                <p className="text-on-surface-variant font-body text-sm leading-relaxed">Live transaction monitoring with automated risk scoring and immediate freezing triggers for high-risk flags.</p>
+                <h3 className="font-headline text-2xl font-bold text-white mb-4 uppercase">Wallet Behavior Signals</h3>
+                <p className="text-on-surface-variant font-body text-sm leading-relaxed">Recent on-chain activity is scored for pass-through behavior, velocity, linked transfers, bridge exposure, and unclear source-of-funds patterns.</p>
               </div>
               <div className="pt-8">
                 <div className="w-full h-[2px] bg-outline-variant/20 relative">
                   <div className="absolute top-0 left-0 h-full w-2/3 bg-primary-container shadow-[0_0_10px_#00f2ff]"></div>
                 </div>
                 <div className="flex justify-between mt-2 font-label text-[10px] uppercase text-slate-500">
-                  <span>Analysis Flow</span>
-                  <span>99.9% Latency</span>
+                  <span>Heuristic Scores</span>
+                  <span>0.00-1.00</span>
                 </div>
               </div>
             </div>
@@ -106,21 +100,21 @@ export default function Home() {
             <div className="bg-surface-container p-10 flex flex-col justify-between">
               <div>
                 <span className="material-symbols-outlined text-primary-container mb-6">verified_user</span>
-                <h3 className="font-headline text-2xl font-bold text-white mb-4 uppercase">Compliance Hub</h3>
-                <p className="text-on-surface-variant font-body text-sm leading-relaxed">Automated regulatory reporting for global jurisdictions. One-click export for audit readiness.</p>
+                <h3 className="font-headline text-2xl font-bold text-white mb-4 uppercase">Travel Rule Controls</h3>
+                <p className="text-on-surface-variant font-body text-sm leading-relaxed">Hold incomplete required information and request wallet ownership verification for unverified self-hosted-like transfers above EUR 1,000.</p>
               </div>
               <div className="flex flex-wrap gap-2 mt-8">
-                <span className="px-3 py-1 bg-background text-[10px] font-label uppercase tracking-tighter text-slate-400">SOC2</span>
-                <span className="px-3 py-1 bg-background text-[10px] font-label uppercase tracking-tighter text-slate-400">GDPR</span>
-                <span className="px-3 py-1 bg-background text-[10px] font-label uppercase tracking-tighter text-slate-400">FATF</span>
+                <span className="px-3 py-1 bg-background text-[10px] font-label uppercase tracking-tighter text-slate-400">TFR</span>
+                <span className="px-3 py-1 bg-background text-[10px] font-label uppercase tracking-tighter text-slate-400">AML/CFT</span>
+                <span className="px-3 py-1 bg-background text-[10px] font-label uppercase tracking-tighter text-slate-400">CASP</span>
               </div>
             </div>
 
             {/* Medium Feature */}
             <div className="md:col-span-2 bg-surface-container-low p-10 flex items-center justify-between gap-12 group">
               <div className="flex-1">
-                <h3 className="font-headline text-3xl font-bold text-white mb-4 uppercase">AI-Driven Risk Engine</h3>
-                <p className="text-on-surface-variant font-body">Predictive modeling that identifies emerging threat patterns before they hit the ledger. Harnessing neural networks to protect your liquidity pools.</p>
+                <h3 className="font-headline text-3xl font-bold text-white mb-4 uppercase">Event Report Workflow</h3>
+                <p className="text-on-surface-variant font-body">The screening response becomes structured context for an AI-generated event report, so operators can review the decision, triggered heuristics, and supporting wallet activity.</p>
               </div>
               <div className="w-48 h-48 shrink-0 bg-surface-container-highest flex items-center justify-center relative overflow-hidden">
                 <Image 
@@ -141,60 +135,60 @@ export default function Home() {
         <section className="bg-surface-container-low py-32 relative">
           <div className="max-w-7xl mx-auto px-8">
             <div className="mb-20 text-center">
-              <h2 className="font-headline text-4xl md:text-5xl font-bold text-white mb-6 uppercase tracking-wider">Designed for Every Tier.</h2>
-              <p className="text-on-surface-variant max-w-xl mx-auto font-body">Adaptive compliance frameworks tailored to your specific ecosystem requirements.</p>
+              <h2 className="font-headline text-4xl md:text-5xl font-bold text-white mb-6 uppercase tracking-wider">Built for Treasury Flows.</h2>
+              <p className="text-on-surface-variant max-w-xl mx-auto font-body">Evaluate the wallet on the other side of a company treasury transfer before accepting funds or sending a payout.</p>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {/* DeFi Use Case */}
+              {/* Inbound Use Case */}
               <div className="glass-card p-1 text-left relative group">
                 <div className="bg-surface-container p-8 h-full">
                   <div className="h-1 bg-primary-container w-12 mb-8 group-hover:w-full transition-all duration-700"></div>
-                  <h4 className="font-headline text-2xl font-bold text-white mb-4 uppercase">DeFi Protocols</h4>
-                  <p className="text-on-surface-variant font-body text-sm mb-8 leading-relaxed">Permissioned pools and decentralized identity verification. Maintain anonymity while satisfying regulatory mandates.</p>
+                  <h4 className="font-headline text-2xl font-bold text-white mb-4 uppercase">Inbound Treasury Deposits</h4>
+                  <p className="text-on-surface-variant font-body text-sm mb-8 leading-relaxed">Screen the wallet sending funds into treasury before the business accepts the transfer.</p>
                   <ul className="space-y-4 mb-10">
                     <li className="flex items-center gap-3 font-label text-xs uppercase tracking-wider text-slate-300">
                       <span className="material-symbols-outlined text-sm text-primary-container">check_circle</span>
-                      Zero-Knowledge KYC
+                      Source-of-Funds Signals
                     </li>
                     <li className="flex items-center gap-3 font-label text-xs uppercase tracking-wider text-slate-300">
                       <span className="material-symbols-outlined text-sm text-primary-container">check_circle</span>
-                      Liquidity Screening
+                      Recent Wallet History
                     </li>
                   </ul>
                 </div>
               </div>
-              {/* Exchanges Use Case */}
+              {/* Outbound Use Case */}
               <div className="glass-card p-1 text-left relative group translate-y-4">
                 <div className="bg-surface-container p-8 h-full border-t border-primary-container/20">
                   <div className="h-1 bg-primary-container w-12 mb-8 group-hover:w-full transition-all duration-700"></div>
-                  <h4 className="font-headline text-2xl font-bold text-white mb-4 uppercase">Crypto Exchanges</h4>
-                  <p className="text-on-surface-variant font-body text-sm mb-8 leading-relaxed">High-throughput monitoring for VASP operations. Automated SAR filing and risk scoring for millions of accounts.</p>
+                  <h4 className="font-headline text-2xl font-bold text-white mb-4 uppercase">Outbound Treasury Payouts</h4>
+                  <p className="text-on-surface-variant font-body text-sm mb-8 leading-relaxed">Check destination wallets before company treasury funds leave the business.</p>
                   <ul className="space-y-4 mb-10">
                     <li className="flex items-center gap-3 font-label text-xs uppercase tracking-wider text-slate-300">
                       <span className="material-symbols-outlined text-sm text-primary-container">check_circle</span>
-                      VASP Compliance Hub
+                      Ownership Verification
                     </li>
                     <li className="flex items-center gap-3 font-label text-xs uppercase tracking-wider text-slate-300">
                       <span className="material-symbols-outlined text-sm text-primary-container">check_circle</span>
-                      Automated SAR Filing
+                      Linked Transfer Detection
                     </li>
                   </ul>
                 </div>
               </div>
-              {/* TradFi Use Case */}
+              {/* CASP Use Case */}
               <div className="glass-card p-1 text-left relative group">
                 <div className="bg-surface-container p-8 h-full">
                   <div className="h-1 bg-primary-container w-12 mb-8 group-hover:w-full transition-all duration-700"></div>
-                  <h4 className="font-headline text-2xl font-bold text-white mb-4 uppercase">TradFi Institutions</h4>
-                  <p className="text-on-surface-variant font-body text-sm mb-8 leading-relaxed">Bridging the gap for legacy banks entering digital assets. Unified dashboards for on-chain and off-chain assets.</p>
+                  <h4 className="font-headline text-2xl font-bold text-white mb-4 uppercase">CASP Operations</h4>
+                  <p className="text-on-surface-variant font-body text-sm mb-8 leading-relaxed">Apply consistent Travel Rule and AML/CFT screening to supported wallet flows.</p>
                   <ul className="space-y-4 mb-10">
                     <li className="flex items-center gap-3 font-label text-xs uppercase tracking-wider text-slate-300">
                       <span className="material-symbols-outlined text-sm text-primary-container">check_circle</span>
-                      Hybrid Asset Audits
+                      Triggered Heuristics Only
                     </li>
                     <li className="flex items-center gap-3 font-label text-xs uppercase tracking-wider text-slate-300">
                       <span className="material-symbols-outlined text-sm text-primary-container">check_circle</span>
-                      Legacy API Adapters
+                      AI Event Reports
                     </li>
                   </ul>
                 </div>
@@ -217,27 +211,27 @@ export default function Home() {
             </div>
             <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-16">
               <div className="max-w-xl text-left">
-                <h2 className="font-headline text-4xl font-bold text-white mb-6 leading-tight uppercase tracking-wide">Total Visibility over the Cipher.</h2>
-                <p className="text-on-surface-variant font-body mb-8">Our API-first architecture allows you to integrate Gatera’s risk scoring directly into your trading engine or wallet interface.</p>
-                <button type="button" className="border border-primary-container/30 hover:border-primary-container text-primary-container px-8 py-3 font-headline font-bold uppercase text-xs tracking-widest transition-all">Documentation</button>
+                <h2 className="font-headline text-4xl font-bold text-white mb-6 leading-tight uppercase tracking-wide">One Decision From Wallet History.</h2>
+                <p className="text-on-surface-variant font-body mb-8">The API returns a final decision and only the heuristics that triggered, with normalized scores and enough context for a clear event report.</p>
+                <Link href="/api" className="inline-flex border border-primary-container/30 hover:border-primary-container text-primary-container px-8 py-3 font-headline font-bold uppercase text-xs tracking-widest transition-all">Documentation</Link>
               </div>
               <div className="w-full md:w-1/2 bg-surface-container-high/80 p-8 border-l-4 border-primary-container glass-card">
                 <div className="flex items-center justify-between mb-6">
-                  <span className="font-label text-xs uppercase tracking-widest text-slate-400">Live Risk Feed</span>
+                  <span className="font-label text-xs uppercase tracking-widest text-slate-400">Screening Result</span>
                   <span className="w-2 h-2 rounded-full bg-error animate-pulse"></span>
                 </div>
                 <div className="space-y-4 font-body">
                   <div className="flex items-center justify-between py-2 border-b border-outline-variant/10">
-                    <span className="text-sm text-white">Wallet: 0x4f...92d1</span>
-                    <span className="text-[10px] font-label px-2 py-0.5 bg-error/10 text-error">CRITICAL</span>
+                    <span className="text-sm text-white">Decision: VerifyOwnership</span>
+                    <span className="text-[10px] font-label px-2 py-0.5 bg-error/10 text-error">ACTION</span>
                   </div>
                   <div className="flex items-center justify-between py-2 border-b border-outline-variant/10">
-                    <span className="text-sm text-white">Entity: L3-Ventures</span>
-                    <span className="text-[10px] font-label px-2 py-0.5 bg-primary-container/10 text-primary-container">CLEAR</span>
+                    <span className="text-sm text-white">Heuristic: SelfHostedAboveThreshold</span>
+                    <span className="text-[10px] font-label px-2 py-0.5 bg-primary-container/10 text-primary-container">TRIGGERED</span>
                   </div>
                   <div className="flex items-center justify-between py-2">
-                    <span className="text-sm text-white">TXID: 9812...bb21</span>
-                    <span className="text-[10px] font-label px-2 py-0.5 bg-surface-container-highest text-slate-400">PENDING</span>
+                    <span className="text-sm text-white">Score: 1.00</span>
+                    <span className="text-[10px] font-label px-2 py-0.5 bg-surface-container-highest text-slate-400">REPORT READY</span>
                   </div>
                 </div>
               </div>
@@ -247,7 +241,7 @@ export default function Home() {
 
         {/* Bottom CTA */}
         <section className="max-w-7xl mx-auto px-8 py-32 text-center">
-          <h2 className="font-headline text-5xl md:text-7xl font-bold text-white mb-10 tracking-tight uppercase">Evolve Your <span className="italic font-extralight text-primary-container">Compliance.</span></h2>
+          <h2 className="font-headline text-5xl md:text-7xl font-bold text-white mb-10 tracking-tight uppercase">Screen the Wallet <span className="italic font-extralight text-primary-container">Before Funds Move.</span></h2>
           <div className="flex flex-col md:flex-row items-center justify-center gap-6">
             <Link href="/login" className="w-full md:w-auto bg-primary-container text-on-primary px-12 py-4 font-headline font-bold uppercase text-sm tracking-widest hover:brightness-110 transition-all glow-shadow text-center">Launch Platform</Link>
             <button onClick={() => window.open("https://t.me/jakukow")} type="button" className="w-full md:w-auto border-b-2 border-primary-container text-white px-12 py-4 font-headline font-bold uppercase text-sm tracking-widest hover:text-primary-container transition-all">Speak to an Architect</button>
@@ -265,7 +259,7 @@ export default function Home() {
             <Link className="font-body text-xs tracking-wider text-slate-500 hover:text-primary-container transition-all opacity-80 hover:opacity-100 uppercase" href="/pricing">Pricing</Link>
           </div>
           <div className="font-body text-xs tracking-wider text-slate-500">
-            © {new Date().getFullYear()} Gatera. Engineered for the Next Frontier.
+            © {new Date().getFullYear()} Gatera. Wallet transfer screening for treasury flows.
           </div>
         </div>
       </footer>

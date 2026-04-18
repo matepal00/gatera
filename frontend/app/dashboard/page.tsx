@@ -1,138 +1,144 @@
 "use client";
 
+import Link from "next/link";
+
+const processSteps = [
+  {
+    title: "Describe the transfer",
+    text: "Enter the wallet on the other side of the treasury transfer, the direction, amount, chain, Travel Rule status, and whether ownership was already verified.",
+    icon: "edit_note",
+  },
+  {
+    title: "Analyze wallet history",
+    text: "Gatera checks recent on-chain activity, token values, linked transfers, velocity, pass-through behavior, bridge exposure, and source-of-funds patterns.",
+    icon: "account_tree",
+  },
+  {
+    title: "Get a decision",
+    text: "The response returns one decision and only the heuristics that triggered, with normalized scores ready for an event report.",
+    icon: "rule",
+  },
+];
+
+const decisionCards = [
+  ["Allow", "No relevant signal was triggered."],
+  ["AllowWithMonitoring", "The transfer can continue, but the wallet should stay visible in monitoring."],
+  ["VerifyOwnership", "Ownership or control of the wallet should be verified before proceeding."],
+  ["ManualReview", "A strong wallet-risk signal needs a human decision."],
+  ["Hold", "Required Travel Rule information is missing for the transfer."],
+];
+
+const inputRows = [
+  ["Wallet Address", "The analyzed wallet, not the company treasury wallet."],
+  ["Transfer Direction", "Inbound means funds come from the analyzed wallet into treasury. Outbound means funds leave treasury to that wallet."],
+  ["Amount", "The current transfer amount in EUR."],
+  ["Travel Rule Status", "Whether required transfer information is complete."],
+  ["Wallet Verification", "Whether ownership or control was previously verified."],
+  ["History Window", "How many recent records should be analyzed."],
+];
+
 export default function DashboardPage() {
   return (
     <div className="p-8 pb-32 space-y-12 max-w-7xl mx-auto w-full min-h-screen">
-      {/* Unified Header */}
-      <header className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 w-full">
-        <div className="flex flex-col gap-2 transition-all">
-          <h2 className="text-[10px] font-label uppercase tracking-[0.4em] text-on-surface-variant font-bold">Global Intelligence</h2>
+      <header className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 w-full">
+        <div className="flex flex-col gap-3 transition-all">
+          <h2 className="text-[10px] font-label uppercase tracking-[0.4em] text-on-surface-variant font-bold">ETHSilesia Workspace</h2>
           <h1 className="text-4xl md:text-5xl font-headline font-bold text-on-surface uppercase tracking-tight">
-            System <span className="text-primary-container">Overview</span>
+            Wallet Screening <span className="text-primary-container">Guide</span>
           </h1>
+          <p className="max-w-3xl text-sm md:text-base text-on-surface-variant leading-relaxed">
+            Use Screening to assess the wallet involved in a treasury transfer before funds are accepted or sent. This MVP focuses on one case at a time and returns a clear operational decision.
+          </p>
         </div>
-        <div className="text-[10px] font-label text-primary-container font-bold tracking-[0.2em] flex items-center gap-3 bg-surface-container-highest/30 px-4 py-2 rounded-sm ghost-border border-primary-container/10">
-          <span className="w-1.5 h-1.5 rounded-full bg-primary-container shadow-[0_0_10px_#00F2FF] animate-pulse"></span>
-          LIVE DATA FEED
-        </div>
+        <Link
+          href="/dashboard/screening"
+          className="bg-primary-container text-on-primary px-6 py-3 font-headline font-bold uppercase text-xs tracking-widest hover:brightness-110 active:scale-95 transition-all glow-shadow flex items-center gap-3"
+        >
+          Start Screening
+          <span className="material-symbols-outlined text-lg">arrow_forward</span>
+        </Link>
       </header>
 
-      {/* KPIs Bento Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-on-surface">
-        {/* Total Screened */}
-        <div className="bg-surface-container-low rounded p-6 ghost-border flex flex-col justify-between min-h-[140px] shadow-sm">
-          <div className="flex justify-between items-start mb-6">
-            <span className="text-[10px] font-label text-on-surface-variant uppercase tracking-[0.2em] font-bold">Total Screened</span>
-            <span className="material-symbols-outlined text-on-surface-variant/30 text-lg">monitoring</span>
-          </div>
-          <div>
-            <div className="text-4xl font-headline font-bold tracking-tighter text-on-surface">1.24M</div>
-            <div className="text-[10px] font-label text-secondary mt-2 flex items-center gap-1 uppercase tracking-widest font-bold">
-              <span className="material-symbols-outlined text-[14px]">trending_up</span> +12% this week
+      <section className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {processSteps.map((step, index) => (
+          <div className="bg-surface-container-low rounded p-8 ghost-border min-h-[260px] flex flex-col" key={step.title}>
+            <div className="flex items-center justify-between mb-8">
+              <span className="text-[10px] font-label text-primary-container uppercase tracking-[0.3em] font-bold">Step 0{index + 1}</span>
+              <span className="material-symbols-outlined text-primary-container/60 text-2xl">{step.icon}</span>
             </div>
+            <h3 className="font-headline text-2xl text-white uppercase tracking-wide mb-4">{step.title}</h3>
+            <p className="text-on-surface-variant text-sm leading-relaxed">{step.text}</p>
           </div>
-        </div>
+        ))}
+      </section>
 
-        {/* Avg Risk Score */}
-        <div className="bg-surface-container-highest rounded p-6 ghost-border glow-shadow relative overflow-hidden flex flex-col justify-between min-h-[140px]">
-          <div className="absolute -top-10 -right-10 w-32 h-32 bg-primary-container/10 rounded-full blur-2xl"></div>
-          <div className="flex justify-between items-start mb-6 relative z-10">
-            <span className="text-[10px] font-label text-primary-container uppercase tracking-[0.2em] font-bold">Avg Risk Score</span>
-            <span className="material-symbols-outlined text-primary-container/60 text-lg">speed</span>
-          </div>
-          <div className="relative z-10">
-            <div className="text-4xl font-headline font-black tracking-tighter text-primary-container drop-shadow-[0_0_8px_rgba(0,242,255,0.3)]">24.5</div>
-          </div>
-        </div>
-
-        {/* High Risk Alerts */}
-        <div className="bg-surface-container-low rounded p-6 ghost-border flex flex-col justify-between border-l-2 border-l-error/50 min-h-[140px]">
-          <div className="flex justify-between items-start mb-6">
-            <span className="text-[10px] font-label text-on-surface-variant uppercase tracking-[0.2em] font-bold text-error/80">High Risk Alerts</span>
-            <span className="material-symbols-outlined text-error/40 text-lg">warning</span>
-          </div>
-          <div>
-            <div className="text-4xl font-headline font-bold tracking-tighter text-error">843</div>
-          </div>
-        </div>
-
-        {/* Pending Reviews */}
-        <div className="bg-surface-container-low rounded p-6 ghost-border flex flex-col justify-between min-h-[140px]">
-          <div className="flex justify-between items-start mb-6">
-            <span className="text-[10px] font-label text-on-surface-variant uppercase tracking-[0.2em] font-bold">Pending Reviews</span>
-            <span className="material-symbols-outlined text-secondary/40 text-lg">pending_actions</span>
-          </div>
-          <div>
-            <div className="text-4xl font-headline font-bold tracking-tighter text-on-surface">156</div>
-          </div>
-        </div>
-      </div>
-
-      {/* Charts & Activity Split */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2 bg-surface-container-low rounded-lg p-8 ghost-border flex flex-col min-h-[450px]">
-          <div className="flex justify-between items-center mb-10">
-            <h3 className="text-[10px] font-label text-on-surface uppercase tracking-[0.3em] font-bold">Risk Exposure Trend (30D)</h3>
-            <div className="flex gap-2">
-              <span className="px-3 py-1.5 bg-surface-container-highest text-primary-container text-[9px] font-label uppercase tracking-widest rounded-sm ghost-border font-black">Network</span>
-              <span className="px-3 py-1.5 bg-transparent text-on-surface-variant text-[9px] font-label uppercase tracking-widest rounded-sm hover:text-on-surface cursor-pointer transition-colors font-bold">Entity</span>
+      <section className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div className="lg:col-span-7 bg-surface-container-low rounded-lg p-8 ghost-border">
+          <div className="flex items-start justify-between gap-6 mb-10">
+            <div>
+              <h3 className="text-[10px] font-label text-on-surface uppercase tracking-[0.3em] font-bold">What You Need</h3>
+              <p className="text-sm text-on-surface-variant mt-2">Inputs required to run a screening request.</p>
             </div>
+            <span className="material-symbols-outlined text-primary-container/50">checklist</span>
           </div>
-          
-          <div className="flex-1 relative w-full mt-4 border-l border-b border-outline-variant/10">
-            <svg className="absolute inset-0 w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 100">
-               <title>Risk Trend Chart</title>
-               <defs>
-                <linearGradient id="chartGlowDashboard" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="0%" stopColor="#00F2FF" stopOpacity="0.1" />
-                  <stop offset="100%" stopColor="#00F2FF" stopOpacity="0" />
-                </linearGradient>
-              </defs>
-              <path d="M0,80 L10,75 L20,85 L30,60 L40,65 L50,40 L60,55 L70,30 L80,45 L90,20 L100,25 L100,100 L0,100 Z" fill="url(#chartGlowDashboard)" />
-              <path d="M0,80 L10,75 L20,85 L30,60 L40,65 L50,40 L60,55 L70,30 L80,45 L90,20 L100,25" fill="none" stroke="#00F2FF" strokeWidth="1.5" className="drop-shadow-[0_0_8px_rgba(0,242,255,0.4)]" />
-            </svg>
-            
-            <div className="absolute -left-10 inset-y-0 flex flex-col justify-between text-[9px] text-on-surface-variant font-label py-4 font-bold opacity-40 uppercase tracking-tighter">
-              <span>100%</span>
-              <span>75%</span>
-              <span>50%</span>
-              <span>25%</span>
-              <span>0%</span>
-            </div>
-          </div>
-        </div>
 
-        <div className="lg:col-span-1 bg-surface-container-low rounded-lg p-0 ghost-border flex flex-col overflow-hidden">
-          <div className="p-6 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-highest/30">
-            <h3 className="text-[10px] font-label text-on-surface uppercase tracking-[0.3em] font-bold">Live Activity</h3>
-            <button type="button" className="text-[9px] font-label text-primary-container hover:text-primary transition-colors font-black tracking-widest uppercase">View Queue</button>
-          </div>
-          <div className="flex-1 overflow-y-auto max-h-[400px] divide-y divide-outline-variant/5">
-            {[
-              { id: "0x7F...3B9A", time: "2 mins ago", type: "Screening", risk: "High: 89", isCritical: true, icon: "currency_bitcoin" },
-              { id: "Binance Hot Wallet", time: "15 mins ago", type: "Monitor", risk: "Low: 12", isCritical: false, icon: "account_balance" },
-              { id: "OKX Settlement", time: "42 mins ago", type: "Screening", risk: "Med: 45", isCritical: false, icon: "account_balance_wallet" },
-              { id: "0x2D...F91C", time: "1 hr ago", type: "Screening", risk: "High: 92", isCritical: true, icon: "security" },
-              { id: "Coinbase Prime", time: "2 hrs ago", type: "Monitor", risk: "Low: 05", isCritical: false, icon: "hub" },
-            ].map((row, i) => (
-              <div key={i} className="hover:bg-surface-container transition-all group cursor-pointer p-5 flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <div className="w-9 h-9 rounded bg-surface-container-highest/50 flex items-center justify-center text-on-surface-variant group-hover:text-primary-container transition-colors shadow-sm">
-                    <span className="material-symbols-outlined text-lg">{row.icon}</span>
-                  </div>
-                  <div>
-                    <div className="font-headline font-bold text-on-surface text-sm tracking-tight">{row.id}</div>
-                    <div className="text-[10px] font-label text-on-surface-variant mt-0.5 uppercase tracking-widest font-bold opacity-60">{row.time} • {row.type}</div>
-                  </div>
-                </div>
-                <div className={`px-2 py-1 rounded-sm text-[9px] font-black uppercase tracking-[0.1em] border ${row.isCritical ? 'bg-error/10 text-error border-error/20 shadow-[0_0_10px_rgba(255,180,171,0.05)]' : 'bg-surface-container-highest text-on-surface-variant border-outline-variant/30 opacity-60'}`}>
-                  {row.risk}
-                </div>
+          <div className="space-y-3">
+            {inputRows.map(([title, text]) => (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 bg-background/20 border border-outline-variant/10 px-5 py-4" key={title}>
+                <span className="font-headline text-white uppercase tracking-widest text-xs">{title}</span>
+                <p className="md:col-span-2 text-on-surface-variant text-sm leading-relaxed">{text}</p>
               </div>
             ))}
           </div>
         </div>
-      </div>
+
+        <div className="lg:col-span-5 bg-surface-container-low rounded-lg p-8 ghost-border">
+          <div className="flex items-start justify-between gap-6 mb-10">
+            <div>
+              <h3 className="text-[10px] font-label text-on-surface uppercase tracking-[0.3em] font-bold">What You Receive</h3>
+              <p className="text-sm text-on-surface-variant mt-2">A compact decision response for the transfer event.</p>
+            </div>
+            <span className="material-symbols-outlined text-primary-container/50">output</span>
+          </div>
+
+          <div className="bg-[#0c0d1d] border border-outline-variant/10 p-6 font-mono text-xs leading-7 text-slate-300 overflow-x-auto">
+            <div>{"{"}</div>
+            <div className="ml-4"><span className="text-primary-container">&quot;decision&quot;</span>: &quot;VerifyOwnership&quot;,</div>
+            <div className="ml-4"><span className="text-primary-container">&quot;heuristics&quot;</span>: [</div>
+            <div className="ml-8">{"{"}</div>
+            <div className="ml-12"><span className="text-primary-container">&quot;kind&quot;</span>: &quot;SelfHostedAboveThreshold&quot;,</div>
+            <div className="ml-12"><span className="text-primary-container">&quot;score&quot;</span>: 1.0</div>
+            <div className="ml-8">{"}"}</div>
+            <div className="ml-4">]</div>
+            <div>{"}"}</div>
+          </div>
+
+          <p className="text-on-surface-variant text-sm leading-relaxed mt-6">
+            Only triggered heuristics are returned, so operators do not need to read through inactive checks.
+          </p>
+        </div>
+      </section>
+
+      <section className="bg-surface-container-low rounded-lg p-8 ghost-border">
+        <div className="flex flex-col md:flex-row justify-between md:items-center gap-6 mb-8">
+          <div>
+            <h3 className="text-[10px] font-label text-on-surface uppercase tracking-[0.3em] font-bold">Decision Meanings</h3>
+            <p className="text-sm text-on-surface-variant mt-2">Use the decision as an operational next step, not as a legal conclusion.</p>
+          </div>
+          <Link href="/dashboard/screening" className="text-primary-container font-headline text-xs uppercase tracking-widest hover:text-white transition-colors">
+            Run First Screening
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-4">
+          {decisionCards.map(([decision, text]) => (
+            <div className="bg-background/20 border border-outline-variant/10 p-5 min-h-[150px]" key={decision}>
+              <code className="block text-primary-container font-bold text-sm mb-4">{decision}</code>
+              <p className="text-on-surface-variant text-sm leading-relaxed">{text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

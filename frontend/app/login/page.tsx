@@ -8,15 +8,25 @@ import { useState } from "react";
 export default function Login() {
   const router = useRouter();
   const [isAuthenticating, setIsAuthenticating] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [authError, setAuthError] = useState("");
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (email !== "ethsilesia.gatera@gmail.com" || password !== "!QAZ2wsx") {
+      setAuthError("Invalid email or password.");
+      return;
+    }
+
+    setAuthError("");
     setIsAuthenticating(true);
     
-    // Simulate biometric/vault decryption delay
     setTimeout(() => {
+      window.localStorage.setItem("gatera_authenticated", "true");
       router.push("/dashboard");
-    }, 1800);
+    }, 800);
   };
 
   return (
@@ -92,9 +102,11 @@ export default function Login() {
                 <span className="material-symbols-outlined mt-2 text-outline text-lg mx-3">alternate_email</span>
                   <input 
                     id="identity"
-                  className="bg-transparent border-none focus:ring-0 w-full text-on-surface pt-2 font-body placeholder:text-outline-variant/60 outline-none" 
+                    className="bg-transparent border-none focus:ring-0 w-full text-on-surface pt-2 font-body placeholder:text-outline-variant/60 outline-none" 
+                    onChange={(event) => setEmail(event.target.value)}
                     placeholder="Email address" 
                     type="email"
+                    value={email}
                     required
                   />
                 </div>
@@ -110,13 +122,21 @@ export default function Login() {
                 <span className="material-symbols-outlined mt-2 text-outline text-lg mx-3">lock_open</span>
                   <input 
                     id="access-key"
-                  className="bg-transparent border-none focus:ring-0 w-full text-on-surface pt-2 font-body placeholder:text-outline-variant/60 outline-none" 
+                    className="bg-transparent border-none focus:ring-0 w-full text-on-surface pt-2 font-body placeholder:text-outline-variant/60 outline-none" 
+                    onChange={(event) => setPassword(event.target.value)}
                     placeholder="••••••••" 
                     type="password"
+                    value={password}
                     required
                   />
                 </div>
               </div>
+
+              {authError && (
+                <div className="border border-error/30 bg-error/10 px-4 py-3 text-error font-label text-[10px] uppercase tracking-widest">
+                  {authError}
+                </div>
+              )}
 
               {/* Primary Action */}
               <button 

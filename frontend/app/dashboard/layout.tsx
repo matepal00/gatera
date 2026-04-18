@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function DashboardLayout({
   children,
@@ -10,13 +10,42 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const router = useRouter();
+  const [isAuthorized, setIsAuthorized] = useState(false);
+
+  useEffect(() => {
+    if (window.localStorage.getItem("gatera_authenticated") !== "true") {
+      router.replace("/login");
+      return;
+    }
+
+    const frame = window.requestAnimationFrame(() => {
+      setIsAuthorized(true);
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [router]);
+
+  const handleSignOut = () => {
+    window.localStorage.removeItem("gatera_authenticated");
+    router.push("/login");
+  };
 
   const navLinks = [
     { name: "Dashboard", href: "/dashboard", icon: "grid_view" },
     { name: "Screening", href: "/dashboard/screening", icon: "policy" },
-    { name: "Wallets", href: "/dashboard/wallets", icon: "account_balance_wallet" },
-    { name: "Reports", href: "/dashboard/reports", icon: "analytics" },
+    // Hidden for MVP: keep the routes/code available, but do not show empty sections in navigation yet.
+    // { name: "Wallets", href: "/dashboard/wallets", icon: "account_balance_wallet" },
+    // { name: "Reports", href: "/dashboard/reports", icon: "analytics" },
   ];
+
+  if (!isAuthorized) {
+    return (
+      <div className="bg-background text-on-surface h-screen flex items-center justify-center">
+        <span className="font-label text-[10px] uppercase tracking-[0.3em] text-primary-container">Checking access...</span>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-background text-on-surface font-body antialiased h-screen overflow-hidden flex selection:bg-primary-container selection:text-on-primary">
@@ -65,10 +94,10 @@ export default function DashboardLayout({
           </Link>
           <div className="flex flex-col gap-2 font-body text-sm font-medium text-slate-500 border-t border-outline-variant/20 mt-6 pt-4">
 
-            <Link className="flex items-center gap-3 py-2 hover:text-primary-container transition-colors" href="/login">
+            <button className="flex items-center gap-3 py-2 hover:text-primary-container transition-colors text-left" onClick={handleSignOut} type="button">
               <span className="material-symbols-outlined text-xl">logout</span>
               Sign Out
-            </Link>
+            </button>
           </div>
         </div>
       </nav>
@@ -85,7 +114,7 @@ export default function DashboardLayout({
               <span className="text-[9px] font-headline uppercase tracking-[0.3em] text-on-surface-variant font-bold opacity-50">System Access</span>
               <div className="flex items-center gap-2 px-3 py-1.5 bg-surface-container-highest/30 rounded-sm ghost-border border-primary-container/10">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse shadow-[0_0_8px_#00F2FF]"></span>
-                <span className="text-[10px] font-headline font-black text-primary-container uppercase tracking-widest drop-shadow-[0_0_5px_rgba(0,242,255,0.4)]">Institutional Treasury</span>
+                <span className="text-[10px] font-headline font-black text-primary-container uppercase tracking-widest drop-shadow-[0_0_5px_rgba(0,242,255,0.4)]">ETHSilesia</span>
               </div>
             </div>
             
