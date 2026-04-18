@@ -7,6 +7,7 @@ mod pricing;
 mod utils;
 
 use axum::{Router, routing::post};
+use tower_http::cors::{Any, CorsLayer};
 use tracing::{Level, info};
 use tracing_subscriber::fmt;
 
@@ -15,14 +16,23 @@ async fn main() {
     dotenvy::dotenv().ok();
     init_tracing();
 
-    let app = Router::new().route("/transaction", post(handlers::evaluate_transaction));
-    let bind_address = "0.0.0.0:3000";
+    // Configure CORS
+    let cors = CorsLayer::new()
+        .allow_origin(Any)
+        .allow_methods(Any)
+        .allow_headers(Any);
+
+    let app = Router::new()
+        .route("/transaction", post(handlers::evaluate_transaction))
+        .layer(cors);
+
+    let bind_address = "0.0.0.0:3001";
 
     let listener = tokio::net::TcpListener::bind(bind_address)
         .await
         .expect("failed to bind HTTP listener");
 
-    info!("API server listening");
+    info!("API server listening on {}", bind_address);
 
     axum::serve(listener, app)
         .await
