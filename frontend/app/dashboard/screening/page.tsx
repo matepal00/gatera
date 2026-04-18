@@ -277,7 +277,7 @@ export default function ScreeningPage() {
     };
 
     try {
-      const response = await fetch("http://localhost:3001/transaction", {
+      const response = await fetch("https://gatera-production.up.railway.app:7632/transaction", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(requestBody),
