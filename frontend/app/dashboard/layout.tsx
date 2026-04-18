@@ -15,7 +15,6 @@ export default function DashboardLayout({
     { name: "Dashboard", href: "/dashboard", icon: "grid_view" },
     { name: "Screening", href: "/dashboard/screening", icon: "policy" },
     { name: "Wallets", href: "/dashboard/wallets", icon: "account_balance_wallet" },
-    { name: "Compliance", href: "/dashboard/compliance", icon: "gavel" },
     { name: "Reports", href: "/dashboard/reports", icon: "analytics" },
   ];
 
@@ -57,9 +56,20 @@ export default function DashboardLayout({
 
         {/* CTA */}
         <div className="p-6 mt-auto">
-          <button type="button" className="w-full py-3 px-4 bg-linear-to-br from-primary-container to-primary-fixed-dim text-on-primary font-headline font-bold text-sm tracking-wider rounded uppercase hover:scale-[0.98] transition-transform shadow-[0_0_15px_rgba(0,242,255,0.2)]">
-            New Assessment
-          </button>
+          <Link 
+            href="/dashboard/screening"
+            className="w-full py-3 px-4 bg-linear-to-br from-primary-container to-primary-fixed-dim text-on-primary font-headline font-bold text-sm tracking-wider rounded uppercase hover:scale-[0.98] transition-all shadow-[0_0_15px_rgba(0,242,255,0.2)] flex items-center justify-center gap-2"
+          >
+            <span className="material-symbols-outlined text-sm">add</span>
+            New Screening
+          </Link>
+          <div className="flex flex-col gap-2 font-body text-sm font-medium text-slate-500 border-t border-outline-variant/20 mt-6 pt-4">
+
+            <Link className="flex items-center gap-3 py-2 hover:text-primary-container transition-colors" href="/login">
+              <span className="material-symbols-outlined text-xl">logout</span>
+              Sign Out
+            </Link>
+          </div>
         </div>
       </nav>
 
@@ -67,45 +77,20 @@ export default function DashboardLayout({
       <main className="ml-64 flex-1 h-full overflow-hidden flex flex-col relative bg-surface">
         {/* TopNavBar Component */}
         <header className="z-40 bg-[#111222]/80 backdrop-blur-lg border-none shadow-[0_4px_30px_rgba(0,242,255,0.03)] flex justify-between items-center w-full px-8 py-4 sticky top-0">
-          {/* Search Bar */}
-          <div className="flex items-center w-1/3">
-            <div className="relative w-full max-w-md group">
-              <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg group-focus-within:text-primary-container transition-colors">
-                search
-              </span>
-              <input
-                className="w-full bg-transparent border-0 border-b border-outline-variant/30 px-10 py-2 text-sm font-label text-on-surface focus:ring-0 focus:border-primary-container focus:outline-none transition-colors placeholder:text-on-surface-variant/50 outline-none"
-                placeholder="SEARCH ENTITIES..."
-                type="text"
-              />
-            </div>
-          </div>
-
           <div className="flex-1"></div>
 
-          {/* Trailing Actions & Profile */}
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-4 text-slate-400 font-headline tracking-wider uppercase text-xs">
-              <button type="button" className="hover:text-primary-container transition-colors duration-300 active:scale-95">
-                <span className="material-symbols-outlined text-xl">notifications</span>
-              </button>
-              <button type="button" className="hover:text-primary-container transition-colors duration-300 active:scale-95">
-                <span className="material-symbols-outlined text-xl">shield_with_heart</span>
-              </button>
-              <button type="button" className="hover:text-primary-container transition-colors duration-300 active:scale-95">
-                <span className="material-symbols-outlined text-xl">settings</span>
-              </button>
+          {/* User Identity & Logout */}
+          <div className="flex items-center gap-10">
+            <div className="flex items-center gap-4">
+              <span className="text-[9px] font-headline uppercase tracking-[0.3em] text-on-surface-variant font-bold opacity-50">System Access</span>
+              <div className="flex items-center gap-2 px-3 py-1.5 bg-surface-container-highest/30 rounded-sm ghost-border border-primary-container/10">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse shadow-[0_0_8px_#00F2FF]"></span>
+                <span className="text-[10px] font-headline font-black text-primary-container uppercase tracking-widest drop-shadow-[0_0_5px_rgba(0,242,255,0.4)]">Institutional Treasury</span>
+              </div>
             </div>
-            <div className="w-9 h-9 rounded-full overflow-hidden ghost-border p-[1px]">
-              <Image
-                alt="User profile"
-                className="w-full h-full object-cover rounded-full"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnKXYY96Fcvt1A9jM-YS1h9pwhJnD3Nqh44xSan6rN3Z7sGEvgmMQQxCI5HxpckmAlSM_XPoWLa3sC2k-Tbz2rqoKkoRyqsFJDgE9woiDgKAa4NSnwYapbU0LgQqu_OsSXuDNBFMv-Vd7OO3gDHga4o1F7VZDDxbL9I6qjMfCaoml0gCqmeTtRCL7gOVUyfuukw21BafLCaiAHQ8xLZuH5XURzo1g47G8ITpYJY0-MvJ08-in_vbY6JfNPPgxmN1t3hZKZU3UgjUiW"
-                width={36}
-                height={36}
-                unoptimized
-              />
-            </div>
+            
+
+
           </div>
         </header>
 
