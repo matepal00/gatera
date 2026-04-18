@@ -6,6 +6,8 @@ mod models;
 mod pricing;
 mod utils;
 
+use std::env;
+
 use axum::{Router, routing::post};
 use tower_http::cors::{Any, CorsLayer};
 use tracing::{Level, info};
@@ -16,7 +18,6 @@ async fn main() {
     dotenvy::dotenv().ok();
     init_tracing();
 
-    // Configure CORS
     let cors = CorsLayer::new()
         .allow_origin(Any)
         .allow_methods(Any)
@@ -26,9 +27,10 @@ async fn main() {
         .route("/transaction", post(handlers::evaluate_transaction))
         .layer(cors);
 
-    let bind_address = "0.0.0.0:3001";
+    let port = env::var("PORT").unwrap_or_else(|_| "3001".to_string());
+    let bind_address = format!("0.0.0.0:{port}");
 
-    let listener = tokio::net::TcpListener::bind(bind_address)
+    let listener = tokio::net::TcpListener::bind(&bind_address)
         .await
         .expect("failed to bind HTTP listener");
 
