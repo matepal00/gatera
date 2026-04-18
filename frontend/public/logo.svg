@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" width="500" height="400">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&amp;display=swap');
+      .logo-text {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 56px;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        fill: #FFFFFF; /* Changed to White for dark background */
+        text-anchor: middle;
+      }
+    </style>
+  </defs>
+
+  <g transform="translate(0, 20)">
+    <rect x="175" y="40" width="35" height="200" fill="#FFFFFF" />
+    
+    <rect x="175" y="40" width="150" height="35" fill="#FFFFFF" />
+    
+    <rect x="125" y="120" width="250" height="30" fill="#00f4ff" />
+    
+    <rect x="290" y="40" width="35" height="200" fill="#FFFFFF" />
+  </g>
+
+  <text x="250" y="380" class="logo-text">GATERA</text>
+</svg>

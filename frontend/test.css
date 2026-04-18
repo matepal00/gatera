@@ -1,0 +1,5 @@
+@import "tailwindcss";
+@theme {
+  --color-inverse-on-surface: #2e2f41;
+  --font-manrope: "Manrope", sans-serif;
+}
