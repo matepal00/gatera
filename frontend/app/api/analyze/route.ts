@@ -7,7 +7,7 @@ export async function POST(req: Request) {
     const { transactionInput, heuristics, decision } = await req.json();
 
     // Check for API Key
-    const apiKey = "AIzaSyC6XRIGilT-muF10iYz_swfc_w1i0bwSZc";
+    const apiKey = process.env.GEMINI_API;
     if (!apiKey) {
       return NextResponse.json(
         { error: "GEMINI_API_KEY is not configured in .env.local" },
